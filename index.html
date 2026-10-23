@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OPALIA | Jarabe de Tuna Gourmet</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        opalia: {
+                            wine: '#3B1015',
+                            wineDark: '#280A0E',
+                            wineLight: '#521A21',
+                            green: '#2D6A3F',
+                            greenHover: '#235331',
+                            cream: '#F7EBE1',
+                            creamDark: '#EAD5C3',
+                            gold: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Ocultar barra de desplazamiento en el carrusel para móviles */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-opalia-wine text-white font-sans antialiased selection:bg-opalia-green selection:text-white">
+
+    <!-- ========================================== -->
+    <!-- ENCABEZADO / NAVEGACIÓN                   -->
+    <!-- ========================================== -->
+    <header class="fixed top-0 left-0 w-full bg-opalia-wine/90 backdrop-blur-md z-50 border-b border-opalia-cream/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Menú de Navegación -->
+            <nav class="hidden md:flex space-x-8 text-sm uppercase tracking-widest text-opalia-cream">
+                <a href="#recetas" class="hover:text-opalia-gold transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-opalia-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Recetas</a>
+                <a href="#catalogo" class="hover:text-opalia-gold transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-opalia-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Catálogo</a>
+                <a href="#nosotros" class="hover:text-opalia-gold transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-opalia-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform">¿Quiénes somos?</a>
+                <a href="#contacto" class="hover:text-opalia-gold transition-colors relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-opalia-gold after:scale-x-0 hover:after:scale-x-100 after:transition-transform">Contáctanos</a>
+            </nav>
+
+            <!-- Ícono del Carrito -->
+            <button id="cartBtn" onclick="toggleCart()" class="relative p-2 text-opalia-cream hover:text-opalia-gold transition-colors focus:outline-none">
+                <i class="fa-solid fa-cart-shopping text-2xl"></i>
+                <span id="cartCount" class="absolute -top-1 -right-1 bg-opalia-green text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center border border-opalia-wine">0</span>
+            </button>
+        </div>
+
+        <!-- Menú Móvil Bar (links rápidos) -->
+        <div class="md:hidden flex justify-around py-2 border-t border-opalia-cream/10 bg-opalia-wineDark/80 text-xs text-opalia-cream">
+            <a href="#recetas" class="hover:text-opalia-gold">Recetas</a>
+            <a href="#catalogo" class="hover:text-opalia-gold">Catálogo</a>
+            <a href="#nosotros" class="hover:text-opalia-gold">Nosotros</a>
+            <a href="#contacto" class="hover:text-opalia-gold">Contacto</a>
+        </div>
+    </header>
+
+    <!-- ========================================== -->
+    <!-- HERO / SECCIÓN PRINCIPAL                   -->
+    <!-- ========================================== -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Imagen de fondo con overlay oscuro -->
+        <div class="absolute inset-0 z-0">
+            <img src="Portada_Pagina.jpg.jpeg" 
+                 alt="Fondo OPALIA Coctel" 
+                 class="w-full h-full object-cover object-center brightness-50 contrast-125 scale-105 transform hover:scale-100 transition-transform duration-1000 ease-out"
+                 onerror="this.src='https://placehold.co/1600x900/3B1015/F7EBE1?text=OPALIA+Jarabe+de+Tuna'">
+            <div class="absolute inset-0 bg-gradient-to-t from-opalia-wine via-opalia-wine/60 to-transparent"></div>
+        </div>
+
+        <!-- Contenido Hero -->
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto space-y-6 mt-12">
+            <h1 class="font-serif text-6xl sm:text-7xl md:text-8xl tracking-widest text-opalia-cream font-normal drop-shadow-lg">
+                OPALIA
+            </h1>
+            <p class="text-lg sm:text-xl md:text-2xl font-light text-opalia-cream/90 tracking-wide">
+                Creamos, Inspiramos y Sorprendemos...
+            </p>
+            <div class="pt-6">
+                <a href="#catalogo" class="inline-block bg-opalia-wineLight border border-opalia-cream/30 hover:bg-opalia-green text-opalia-cream font-medium px-8 py-3 rounded-full uppercase tracking-wider text-sm transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-opalia-green/30">
+                    Comprar
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- RECETAS DE TEMPORADA (CARRUSEL)            -->
+    <!-- ========================================== -->
+    <section id="recetas" class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto border-t border-opalia-cream/10">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="font-serif text-3xl sm:text-4xl text-opalia-cream uppercase tracking-wider mb-4">
+                Recetas de Temporada
+            </h2>
+            <p class="text-opalia-cream/80 text-sm sm:text-base leading-relaxed font-light">
+                OPALIA ofrece versatilidad e innovación. Como equipo, nos encargamos de buscar las mejores recetas para que puedas aprovechar al máximo su esencia.
+            </p>
+        </div>
+
+        <!-- Carrusel Contenedor -->
+        <div class="relative group">
+            <!-- Botón Izquierda -->
+            <button onclick="scrollCarousel(-1)" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 sm:-translate-x-6 z-20 bg-opalia-wineDark/80 hover:bg-opalia-green text-white p-3 rounded-full shadow-lg transition-all focus:outline-none border border-opalia-cream/20">
+                <i class="fa-solid fa-chevron-left text-lg"></i>
+            </button>
+
+            <!-- Slider de Tarjetas -->
+            <div id="recipesCarousel" class="flex overflow-x-auto space-x-6 scroll-smooth no-scrollbar py-4 px-2">
+                
+                <!-- Receta 1: Tuna Spritz -->
+                <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-opalia-cream text-opalia-wine rounded-2xl overflow-hidden shadow-2xl flex-shrink-0 flex flex-col transform transition-transform duration-300 hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?q=80&w=600&auto=format&fit=crop" 
+                             alt="Tuna Spritz" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             onerror="this.src='https://placehold.co/600x600/F7EBE1/3B1015?text=Tuna+Spritz'">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-opalia-green uppercase tracking-wider">Coctelería</span>
+                            <h3 class="font-serif text-2xl font-bold mt-1 mb-3 text-opalia-wine">Tuna Spritz</h3>
+                            <div class="space-y-2 text-xs text-gray-700">
+                                <p class="font-semibold">Ingredientes:</p>
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>60 ml Jarabe OPALIA</li>
+                                    <li>120 ml Vino Espumoso / Prosecco</li>
+                                    <li>30 ml Agua con gas</li>
+                                    <li>Rodaja de limón y romero</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-opalia-wine/10 text-xs italic text-gray-600">
+                            "Perfecto para refrescar tus tardes de verano."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receta 2: Cheesecake de Tuna y Yogurt -->
+                <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-opalia-cream text-opalia-wine rounded-2xl overflow-hidden shadow-2xl flex-shrink-0 flex flex-col transform transition-transform duration-300 hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad?q=80&w=600&auto=format&fit=crop" 
+                             alt="Cheesecake de Tuna" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             onerror="this.src='https://placehold.co/600x600/F7EBE1/3B1015?text=Cheesecake'">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-opalia-green uppercase tracking-wider">Postres</span>
+                            <h3 class="font-serif text-2xl font-bold mt-1 mb-3 text-opalia-wine">Cheesecake de Tuna</h3>
+                            <div class="space-y-2 text-xs text-gray-700">
+                                <p class="font-semibold">Ingredientes:</p>
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>200g Yogurt Griego</li>
+                                    <li>45 ml Jarabe OPALIA</li>
+                                    <li>Base de galleta molida</li>
+                                    <li>Frutos rojos para decorar</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-opalia-wine/10 text-xs italic text-gray-600">
+                            "Un toque dulce, cremoso y ligero para compartir."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receta 3: Latte de Tuna -->
+                <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-opalia-cream text-opalia-wine rounded-2xl overflow-hidden shadow-2xl flex-shrink-0 flex flex-col transform transition-transform duration-300 hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=600&auto=format&fit=crop" 
+                             alt="Latte de Tuna" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             onerror="this.src='https://placehold.co/600x600/F7EBE1/3B1015?text=Latte+de+Tuna'">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-opalia-green uppercase tracking-wider">Bebidas</span>
+                            <h3 class="font-serif text-2xl font-bold mt-1 mb-3 text-opalia-wine">Latte de Tuna</h3>
+                            <div class="space-y-2 text-xs text-gray-700">
+                                <p class="font-semibold">Ingredientes:</p>
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>200 ml Leche (vegetal o entera)</li>
+                                    <li>30 ml Jarabe OPALIA</li>
+                                    <li>Espuma de leche</li>
+                                    <li>Hielo al gusto</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-opalia-wine/10 text-xs italic text-gray-600">
+                            "Suavidad cremosa y exótica en cada sorbo."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receta 3: Latte de Tuna -->
+                <div class="min-w-[280px] sm:min-w-[320px] max-w-[320px] bg-opalia-cream text-opalia-wine rounded-2xl overflow-hidden shadow-2xl flex-shrink-0 flex flex-col transform transition-transform duration-300 hover:-translate-y-2">
+                    <div class="h-64 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1572490122747-3968b75cc699?q=80&w=600&auto=format&fit=crop" 
+                             alt="Latte de Tuna" 
+                             class="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+                             onerror="this.src='https://placehold.co/600x600/F7EBE1/3B1015?text=Latte+de+Tuna'">
+                    </div>
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <span class="text-xs font-semibold text-opalia-green uppercase tracking-wider">Bebidas</span>
+                            <h3 class="font-serif text-2xl font-bold mt-1 mb-3 text-opalia-wine">Latte de Tuna</h3>
+                            <div class="space-y-2 text-xs text-gray-700">
+                                <p class="font-semibold">Ingredientes:</p>
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>200 ml Leche (vegetal o entera)</li>
+                                    <li>30 ml Jarabe OPALIA</li>
+                                    <li>Espuma de leche</li>
+                                    <li>Hielo al gusto</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-4 border-t border-opalia-wine/10 text-xs italic text-gray-600">
+                            "Suavidad cremosa y exótica en cada sorbo."
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Botón Derecha -->
+            <button onclick="scrollCarousel(1)" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 sm:translate-x-6 z-20 bg-opalia-wineDark/80 hover:bg-opalia-green text-white p-3 rounded-full shadow-lg transition-all focus:outline-none border border-opalia-cream/20">
+                <i class="fa-solid fa-chevron-right text-lg"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- COMPRAR / CATALOGO (PUNTO DE VENTA)        -->
+    <!-- ========================================== -->
+    <section id="catalogo" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <h2 class="font-serif text-3xl sm:text-4xl text-opalia-cream uppercase tracking-wider mb-10 text-left">
+            Comprar
+        </h2>
+
+        <!-- Tarjeta de Producto -->
+        <div class="bg-white rounded-3xl p-6 sm:p-10 shadow-2xl text-opalia-wine flex flex-col md:flex-row gap-8 items-center">
+            
+            <!-- Imagen del Producto -->
+            <div class="w-full md:w-1/2 h-80 sm:h-96 rounded-2xl overflow-hidden relative bg-opalia-cream flex items-center justify-center p-4">
+                <img src="https://images.unsplash.com/photo-1527661591475-527312dd65f5?q=80&w=800&auto=format&fit=crop" 
+                     alt="Botella OPALIA Jarabe de Tuna" 
+                     class="max-h-full object-contain filter drop-shadow-2xl transition-transform duration-500 hover:scale-105"
+                     onerror="this.src='https://placehold.co/500x700/F7EBE1/3B1015?text=OPALIA+Botella+1L'">
+            </div>
+
+            <!-- Detalles del Producto -->
+            <div class="w-full md:w-1/2 space-y-6">
+                <div>
+                    <h3 class="font-serif text-3xl font-bold tracking-wide">OPALIA</h3>
+                    <p class="text-xl font-medium text-gray-700 mt-1">Jarabe de Tuna</p>
+                </div>
+
+                <div class="space-y-1">
+                    <p class="text-xs uppercase tracking-widest text-gray-500 font-semibold">TAMAÑO</p>
+                    <p class="text-base font-medium text-gray-800">Botella de vidrio de 1L</p>
+                </div>
+
+                <!-- Selector de Cantidad y Precio -->
+                <div class="flex items-center space-x-6 py-4 border-y border-gray-200">
+                    <div class="flex items-center border border-gray-300 rounded-full px-3 py-1 bg-gray-50">
+                        <button onclick="updateQuantity(-1)" class="w-8 h-8 flex items-center justify-center text-lg font-bold text-gray-600 hover:text-opalia-wine focus:outline-none">-</button>
+                        <span id="productQty" class="w-10 text-center font-semibold text-gray-800 text-lg">1</span>
+                        <button onclick="updateQuantity(1)" class="w-8 h-8 flex items-center justify-center text-lg font-bold text-gray-600 hover:text-opalia-wine focus:outline-none">+</button>
+                    </div>
+
+                    <div class="text-2xl font-bold text-opalia-wine">
+                        <span id="productPrice">10</span> €
+                    </div>
+                </div>
+
+                <!-- Botón Agregar al Carrito -->
+                <button onclick="addToCart()" class="w-full bg-opalia-green hover:bg-opalia-greenHover text-white py-4 px-6 rounded-full font-semibold flex items-center justify-center space-x-3 shadow-lg transform active:scale-95 transition-all">
+                    <i class="fa-solid fa-cart-plus text-xl"></i>
+                    <span>Agregar al carrito</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- ACERCA DE OPALIA                           -->
+    <!-- ========================================== -->
+    <section id="nosotros" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-opalia-cream/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            
+            <div class="space-y-6">
+                <h2 class="font-serif text-3xl sm:text-4xl text-opalia-cream uppercase tracking-wider">
+                    Acerca de OPALIA
+                </h2>
+                
+                <div class="space-y-4 text-opalia-cream/80 text-sm sm:text-base leading-relaxed font-light">
+                    <p>
+                        En OPALIA, creemos que los sabores de México tienen una historia que merece llegar al mundo.
+                    </p>
+                    <p>
+                        Somos una empresa mexicana que nace con la visión de llevar la esencia de nuestra tierra al mercado internacional, dando visibilidad a la tuna, un fruto emblemático de nuestra cultura y de la riqueza natural de México.
+                    </p>
+                    <p>
+                        A través de nuestro jarabe gourmet de tuna, transformamos este fruto en una propuesta innovadora que combina tradición, calidad y versatilidad, creando nuevas formas de disfrutar su sabor en bebidas, postres y experiencias gastronómicas.
+                    </p>
+                    <p>
+                        Nuestro propósito es compartir con el mundo una parte de lo que nos hace únicos, impulsando el valor de los ingredientes mexicanos y demostrando que nuestras raíces pueden inspirar nuevas posibilidades en la gastronomía internacional.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Imagen representativa -->
+            <div class="rounded-3xl overflow-hidden shadow-2xl h-80 sm:h-96 relative">
+                <img src="https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=800&auto=format&fit=crop" 
+                     alt="Tunas Fruto Mexicano" 
+                     class="w-full h-full object-cover brightness-90 hover:scale-105 transition-transform duration-700"
+                     onerror="this.src='https://placehold.co/800x800/3B1015/F7EBE1?text=Tuna+Fruto+Mexicano'">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- CONTACTANOS & FORMULARIO                   -->
+    <!-- ========================================== -->
+    <section id="contacto" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto border-t border-opalia-cream/10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            
+            <!-- Información de Contacto -->
+            <div class="space-y-8">
+                <h2 class="font-serif text-3xl sm:text-4xl text-opalia-cream uppercase tracking-wider">
+                    Contáctanos
+                </h2>
+
+                <div class="space-y-6 text-opalia-cream">
+                    <div class="flex items-center space-x-4">
+                        <i class="fa-solid fa-phone text-xl text-opalia-gold"></i>
+                        <span class="text-lg">+52 646 123 45 68</span>
+                    </div>
+
+                    <div class="flex items-center space-x-4">
+                        <i class="fa-solid fa-envelope text-xl text-opalia-gold"></i>
+                        <span class="text-lg">service@opalia.com</span>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-opalia-cream/10">
+                    <h3 class="font-serif text-xl text-opalia-cream mb-4">Síguenos</h3>
+                    <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-3 text-opalia-cream hover:text-opalia-gold transition-colors">
+                        <i class="fa-brands fa-instagram text-2xl"></i>
+                        <span class="text-base font-medium">opalia.mx</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Formulario -->
+            <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl text-opalia-wine">
+                <h3 class="font-serif text-2xl font-bold mb-6 text-center">Formulario de contacto</h3>
+                
+                <form id="contactForm" onsubmit="submitForm(event)" class="space-y-4">
+                    <div>
+                        <input type="text" id="name" required placeholder="Nombre" 
+                               class="w-full bg-opalia-cream/50 border border-opalia-creamDark rounded-xl px-4 py-3 text-opalia-wine placeholder-opalia-wine/60 focus:outline-none focus:ring-2 focus:ring-opalia-green">
+                    </div>
+
+                    <div>
+                        <input type="email" id="email" required placeholder="Correo" 
+                               class="w-full bg-opalia-cream/50 border border-opalia-creamDark rounded-xl px-4 py-3 text-opalia-wine placeholder-opalia-wine/60 focus:outline-none focus:ring-2 focus:ring-opalia-green">
+                    </div>
+
+                    <div>
+                        <textarea id="message" rows="4" required placeholder="Mensaje" 
+                                  class="w-full bg-opalia-cream/50 border border-opalia-creamDark rounded-xl px-4 py-3 text-opalia-wine placeholder-opalia-wine/60 focus:outline-none focus:ring-2 focus:ring-opalia-green"></textarea>
+                    </div>
+
+                    <button type="submit" 
+                            class="w-full bg-opalia-green hover:bg-opalia-greenHover text-white font-semibold py-3 px-6 rounded-full shadow-md transition-all">
+                        Enviar
+                    </button>
+                </form>
+                
+                <!-- Mensaje de éxito escondido -->
+                <div id="formSuccess" class="hidden mt-4 p-4 bg-green-100 text-green-800 rounded-xl text-center font-medium">
+                    ¡Gracias por tu mensaje! Nos pondremos en contacto pronto.
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- MODAL / VENTANA DEL CARRITO DE COMPRAS     -->
+    <!-- ========================================== -->
+    <div id="cartModal" class="fixed inset-0 z-50 flex justify-end bg-black/60 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="w-full max-w-md bg-white text-opalia-wine h-full shadow-2xl p-6 flex flex-col transform translate-x-full transition-transform duration-300" id="cartContent">
+            
+            <div class="flex items-center justify-between border-b pb-4">
+                <h3 class="font-serif text-2xl font-bold">Tu Carrito</h3>
+                <button onclick="toggleCart()" class="text-gray-500 hover:text-red-500 text-2xl">&times;</button>
+            </div>
+
+            <!-- Items del carrito -->
+            <div id="cartItems" class="flex-1 overflow-y-auto py-4 space-y-4">
+                <p id="emptyCartMsg" class="text-gray-500 text-center py-8">El carrito está vacío</p>
+            </div>
+
+            <!-- Footer del carrito -->
+            <div class="border-t pt-4 space-y-4">
+                <div class="flex justify-between items-center text-xl font-bold">
+                    <span>Total:</span>
+                    <span id="cartTotal">0.00 €</span>
+                </div>
+                <button onclick="checkout()" class="w-full bg-opalia-green hover:bg-opalia-greenHover text-white py-3 rounded-full font-semibold transition-all shadow-lg">
+                    Finalizar Compra
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FOOTER                                     -->
+    <!-- ========================================== -->
+    <footer class="bg-opalia-wineDark py-6 border-t border-opalia-cream/10 text-center text-xs text-opalia-cream/60">
+        <p>© 2026 OPALIA. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- ========================================== -->
+    <!-- JAVASCRIPT LOGIC                           -->
+    <!-- ========================================== -->
+    <script>
+        // --- ESTADO GLOBAL Y VARIABLES ---
+        let unitPrice = 10;
+        let quantity = 1;
+        let cart = [];
+
+        // --- FUNCIONES DEL CARRUSEL DE RECETAS ---
+        function scrollCarousel(direction) {
+            const container = document.getElementById('recipesCarousel');
+            const scrollAmount = 340; // Ancho aproximado de la tarjeta + gap
+            container.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // --- LOGICA DEL PRODUCTO Y CANTIDAD ---
+        // Define el límite máximo permitido
+        const MAX_LIMIT = 5; 
+
+        function updateQuantity(change) {
+            quantity += change;
+
+            // Control de límite inferior (mínimo 1)
+            if (quantity < 1) quantity = 1;
+
+            // Control de límite superior (máximo MAX_LIMIT)
+            if (quantity > MAX_LIMIT) {
+                quantity = MAX_LIMIT;
+                alert(`Lo sentimos, el límite máximo por compra es de ${MAX_LIMIT} unidades.`);
+            }
+            
+            document.getElementById('productQty').innerText = quantity;
+            document.getElementById('productPrice').innerText = (quantity * unitPrice).toFixed(0);
+        }
+
+        // --- CARRITO DE COMPRAS ---
+        function addToCart() {
+            const existingItem = cart.find(item => item.name === 'OPALIA - Jarabe de Tuna');
+            
+            if (existingItem) {
+                existingItem.qty += quantity;
+            } else {
+                cart.push({
+                    name: 'OPALIA - Jarabe de Tuna',
+                    size: 'Botella de vidrio 1L',
+                    price: unitPrice,
+                    qty: quantity
+                });
+            }
+
+            // Resetear la cantidad a 1
+            quantity = 1;
+            document.getElementById('productQty').innerText = quantity;
+            document.getElementById('productPrice').innerText = unitPrice;
+
+            updateCartUI();
+            toggleCart(true); // Abrir carrito al agregar
+        }
+
+        function updateCartUI() {
+            const cartItemsContainer = document.getElementById('cartItems');
+            const cartCountEl = document.getElementById('cartCount');
+            const cartTotalEl = document.getElementById('cartTotal');
+
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p class="text-gray-500 text-center py-8">El carrito está vacío</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    totalQty += item.qty;
+                    totalPrice += item.price * item.qty;
+
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'flex justify-between items-center border-b pb-3';
+                    itemEl.innerHTML = `
+                        <div>
+                            <h4 class="font-bold text-sm">${item.name}</h4>
+                            <p class="text-xs text-gray-500">${item.size}</p>
+                            <p class="text-xs font-semibold mt-1">${item.price} € x ${item.qty}</p>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <span class="font-bold">${item.price * item.qty} €</span>
+                            <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 text-sm">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(itemEl);
+                });
+            }
+
+            cartCountEl.innerText = totalQty;
+            cartTotalEl.innerText = totalPrice.toFixed(2) + ' €';
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function toggleCart(forceOpen = false) {
+            const modal = document.getElementById('cartModal');
+            const content = document.getElementById('cartContent');
+
+            if (forceOpen || modal.classList.contains('opacity-0')) {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                content.classList.remove('translate-x-full');
+            } else {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                content.classList.add('translate-x-full');
+            }
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Tu carrito está vacío');
+                return;
+            }
+            alert('¡Gracias por tu compra simulada en OPALIA!');
+            cart = [];
+            updateCartUI();
+            toggleCart();
+        }
+
+        // --- FORMULARIO DE CONTACTO ---
+        function submitForm(event) {
+            event.preventDefault();
+            const form = document.getElementById('contactForm');
+            const successMsg = document.getElementById('formSuccess');
+
+            // Simular envío
+            form.reset();
+            successMsg.classList.remove('hidden');
+
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
